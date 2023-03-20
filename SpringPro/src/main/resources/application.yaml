@@ -1,0 +1,28 @@
+#关闭模版引擎缓存
+spring:
+  thymeleaf:
+    cache: false
+  #配置文件的位置
+  messages:
+    basename: i18n.login
+#以下为数据库mybatis配置
+  datasource:
+    username: root
+    password: "233"
+    url: jdbc:mysql://localhost:3306/hello?useUnicode=true&characterEncoding=utf-8
+    #    如果时区异常可以加入&severTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  mvc:
+    format:
+      date: yyyy-MM-dd
+##mybatis配置
+#mybatis:
+#  type-aliases-package: com.asuka.hellospring.pojo
+#  mapper-locations: classpath:mybatis/mapper/*.xml
+#
+##pageHaper配置
+##pagehelper:
+#  helperDialect: mysql
+#  reasonable: true
+#  supportMethodsArguments: true
+#  params: count=countSql

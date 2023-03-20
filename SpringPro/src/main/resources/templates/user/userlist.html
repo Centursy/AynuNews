@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<style>
+	.btn-page {
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		border-radius: 2px;
+		-moz-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2);
+		-webkit-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2);
+		box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2);
+		padding: 5px 10px;
+	}
+	.btn-active {
+		color: mintcream;/*字体*/
+		background-color: #0d69af;/*背景*/
+		border-color: #0d69af;/*边界*/
+	}
+</style>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>用户管理</title>
+		<!-- Bootstrap core CSS -->
+		<link th:href="@{/asserts/css/bootstrap.min.css}" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+		<style type="text/css">
+			/* Chart.js */
+			
+			@-webkit-keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			@keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			.chartjs-render-monitor {
+				-webkit-animation: chartjs-render-animation 0.001s;
+				animation: chartjs-render-animation 0.001s;
+			}
+		</style>
+
+	</head>
+
+	<body>
+	<!--复用，顶栏-->
+<!--	传参数，高亮-->
+		<div th:insert="~{coomons/coomonsa::title}"></div>
+
+		<div class="container-fluid">
+			<div class="row">
+<!--	复用，侧边栏-->
+				<div th:insert="~{coomons/coomonsa::sidebar(active='userlist.html')}"></div>
+
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+					<div class="table-responsive">
+						<table class="table table-striped table-sm">
+							<thead>
+								<tr>
+									<th>用户名</th>
+									<th>密码</th>
+									<th>操作</th>
+
+								</tr>
+							</thead>
+							<tbody>
+							<tr th:each="emp:${user}">
+								<td th:text="${emp.getId()}"></td>
+								<td th:text="${emp.getPassword()}"></td>
+
+								<td>
+									<a class="btn btn-sm btn-primary" th:href="@{/user/}+${emp.getId()}">编辑</a>
+									<a class="btn btn-sm btn-danger" th:href="@{/userdel/}+${emp.getId()}">删除</a>
+								</td>
+							</tr>
+							</tbody>
+
+						</table>
+					</div>
+
+					<!--					分页-->
+
+					<div class="row">
+						<div class="col-md-6">
+							当前第[[${pageInfo.pageNum}]]页，共[[${pageInfo.pages}]]页，共[[${pageInfo.total}]]条记录 </div>
+					</div>
+					<!-- 分页导航条 -->
+					<div class="pagenation">
+						<a th:href="@{/userlist/}"><span class="btn-page btn-default">首页</span></a>
+						<a th:href="@{/userlist/(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}"><span
+								class="btn-page btn-default">上一页</span></a>
+						<!-- 遍历导航页 -->
+						<a th:each="page,pageStat:${pageInfo.navigatepageNums}"
+						   th:href="@{/userlist/(pageNum=${page})}">
+                                        <span th:if="${page}==${pageInfo.pageNum}">
+                                            <span class="btn-page btn-active" th:text="${page}"></span>
+                                        </span>
+							<span th:if="${page}!=${pageInfo.pageNum}">
+                                            <span class="btn-page btn-default" th:text="${page}"></span>
+                                        </span>
+						</a>
+						<!-- 导航页 -->
+
+						<a th:href="@{/userlist/(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}"><span
+								class="btn-page btn-default">下一页</span></a>
+						<a th:href="@{/userlist/(pageNum=${pageInfo.pages})}"><span class="btn-page btn-default">尾页</span></a>
+					</div>
+
+
+				</main>
+			</div>
+		</div>
+
+		<!-- Bootstrap core JavaScript
+    ================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"></script>
+		<script type="text/javascript" src="asserts/js/popper.min.js"></script>
+		<script type="text/javascript" src="asserts/js/bootstrap.min.js"></script>
+
+		<!-- Icons -->
+		<script type="text/javascript" src="asserts/js/feather.min.js"></script>
+		<script>
+			feather.replace()
+		</script>
+
+		<!-- Graphs -->
+		<script type="text/javascript" src="asserts/js/Chart.min.js"></script>
+		<script>
+			var ctx = document.getElementById("myChart");
+			var myChart = new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+					datasets: [{
+						data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+						lineTension: 0,
+						backgroundColor: 'transparent',
+						borderColor: '#007bff',
+						borderWidth: 4,
+						pointBackgroundColor: '#007bff'
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: false
+							}
+						}]
+					},
+					legend: {
+						display: false,
+					}
+				}
+			});
+
+		</script>
+	<script>
+		fetch('https://v1.hitokoto.cn')
+				.then(response => response.json())
+				.then(data => {
+					const hitokoto = document.querySelector('#hitokoto_text')
+					// hitokoto.href = `https://hitokoto.cn/?uuid=${data.uuid}`
+					hitokoto.innerText = data.hitokoto
+				})
+				.catch(console.error)
+	</script>
+
+	</body>
+
+</html>

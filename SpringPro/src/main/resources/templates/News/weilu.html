@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<style>
+	.btn-page {
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		border-radius: 2px;
+		-moz-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2);
+		-webkit-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2);
+		box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2);
+		padding: 5px 10px;
+	}
+	.btn-active {
+		color: mintcream;/*字体*/
+		background-color: #0d69af;/*背景*/
+		border-color: #0d69af;/*边界*/
+	}
+	.badge {
+		display: inline-block;
+		min-width: 10px;
+		padding: 3px 7px;
+		font-size: 12px;
+		font-weight: bold;
+		line-height: 1;
+		color: #fff;
+		text-align: center;
+		white-space: nowrap;
+		vertical-align: middle;
+		background-color: #007bff;
+		border-radius: 10px;
+	}
+	.list-group-item > .badge {
+		float: right;
+	}
+	.page-header {
+		padding-bottom: 9px;
+		margin: 40px 0 20px;
+		border-bottom: 1px solid #eeeeee;
+	}
+	.input-group-addon {
+		padding: 6px 12px;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 1;
+		color: #555555;
+		text-align: center;
+		background-color: #eeeeee;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		display: table-cell;
+
+		vertical-align: middle;
+	}
+
+	.navbar-text {
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+
+
+</style>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>围炉夜话</title>
+		<!-- Bootstrap core CSS -->
+		<link th:href="@{/asserts/css/bootstrap.min.css}" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+		<style type="text/css">
+			/* Chart.js */
+			
+			@-webkit-keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			@keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			.chartjs-render-monitor {
+				-webkit-animation: chartjs-render-animation 0.001s;
+				animation: chartjs-render-animation 0.001s;
+			}
+		</style>
+	</head>
+
+	<body>
+	<!--复用，顶栏-->
+<!--	传参数，高亮-->
+		<div th:insert="~{coomons/coomons::title}"></div>
+
+		<div class="container-fluid">
+			<div class="row">
+<!--	复用，侧边栏-->
+				<div th:insert="~{coomons/coomons::sidebar(active='weilu.html')}"></div>
+			</div>
+		</div>
+	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+<!--		巨幕，弃用方案-->
+<!--			<div class="jumbotron">-->
+<!--				<h1>Hello, world!</h1>-->
+<!--				<p>...</p>-->
+<!--				<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>-->
+<!--			</div>-->
+<!--带图的-->
+		<div class="card bg-dark text-white">
+			<img src="https://i.328888.xyz/2023/03/17/LUIDQ.png" class="card-img" alt="...">
+			<div class="card-img-overlay">
+				<h3 class="card-title">围炉夜话</h3>
+				<p class="card-text">倾听心灵的故事，分享生活的温暖。</p>
+				<p class="card-text">在寂静无人的夜里，不妨听大伙讲些都市传说（误</p>
+
+			</div>
+		</div>
+
+
+		<div style="width: 60%;display: inline-block;padding: 10px;">
+
+			<ul class="list-group list-group-flush">
+
+				<li class="list-group-item" th:each="news:${news}">
+					<a th:href="@{/news/}+${news.getId()}" style="color: #1b1e21">
+						[[${news.getTitle()}]]
+
+
+						<span class="badge badge-primary">
+							[[${news.getType()}]]
+						</span>
+
+
+					</a>
+
+
+
+					<a class="badge badge-info" th:text="${#dates.format(news.getTime(),'MM-dd HH:mm' )}" style="color: #ffffff">
+						Info
+					</a>
+				</li>
+
+			</ul>
+
+
+			<!--					分页-->
+
+			<div class="row">
+
+			</div>
+			<!-- 分页导航条 -->
+			<div class="pagenation">
+				<a th:href="@{/weilu/}"><span class="btn-page btn-default">首页</span></a>
+				<a th:href="@{/weilu/(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}"><span
+						class="btn-page btn-default">上一页</span></a>
+				<!-- 遍历导航页 -->
+				<a th:each="page,pageStat:${pageInfo.navigatepageNums}"
+				   th:href="@{/weilu/(pageNum=${page})}">
+                                        <span th:if="${page}==${pageInfo.pageNum}">
+                                            <span class="btn-page btn-active" th:text="${page}"></span>
+                                        </span>
+					<span th:if="${page}!=${pageInfo.pageNum}">
+                                            <span class="btn-page btn-default" th:text="${page}"></span>
+                                        </span>
+				</a>
+				<!-- 导航页 -->
+
+				<a th:href="@{/weilu/(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}"><span
+						class="btn-page btn-default">下一页</span></a>
+				<a th:href="@{/weilu/(pageNum=${pageInfo.pages})}"><span class="btn-page btn-default">尾页</span></a>
+			</div>
+
+
+		</div>
+
+		<div style="width: 30%;display: inline-block;float: right;padding: 10px;border-radius: 4px;">
+
+
+
+<!--			<form role="form" style="width: 70%" th:action="@{/newssubmit}">-->
+<!--				<div class="form-group">-->
+
+<!--					<label >标签</label>-->
+<!--					<input type="text" class="form-control" placeholder="文本输入">-->
+<!--				</div>-->
+<!--				<div class="form-group">-->
+<!--					<label >正文</label>-->
+<!--					<textarea class="form-control" rows="3"></textarea>-->
+<!--				</div>-->
+<!--				<p style="color: red" th:text="写个字再交"></p>-->
+<!--				<button class="btn btn-info" type="submit">提交</button>-->
+
+<!--			</form>-->
+
+			<div class="accordion" id="accordionExample">
+				<div class="card">
+					<div class="card-header" id="headingOne">
+						<h2 class="mb-0">
+							<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color: black">
+								请仔细阅读守则后发帖！
+							</button>
+						</h2>
+					</div>
+
+					<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+						<div class="card-body">
+							<h3 style="text-align: center">发帖规则（简单版）</h3>
+
+							<ul>
+								<li>发帖内容应与版块主题相关，可轻微跑题但不要发广告哦。</li>
+								<li>发帖时请注意文明用语，人身攻击是不允许的。</li>
+								<li>虽然都是同学但也要注意隐私，无故暴露他人隐私是不允许的。</li>
+								<li>请避免涉及敏感或违法的话题，不得违反国家法律法规。</li>
+								<li>以上，玩的愉快。</li>
+							</ul>
+
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-header" id="headingTwo">
+						<h2 class="mb-0">
+							<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color: black">
+								点此发帖
+							</button>
+						</h2>
+					</div>
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+						<div class="card-body">
+							<!--						提交表格-->
+							<form role="form" th:action="@{/newssubmit}">
+								<input type="hidden" name="user" th:value="${session.loginUser}">
+								<div class="form-group">
+
+									<label >标题</label>
+									<input type="text" class="form-control" placeholder="写标题，不写将无法提交哦" name="title">
+								</div>
+								<div class="form-group">
+									<label >正文</label>
+									<textarea class="form-control" rows="3" placeholder="在此输入正文" name="news"></textarea>
+								</div>
+
+								<label>选择投递分区，匿名外的帖子都将在综合版展示</label>
+								<select class="form-control" name="type">
+									<option th:value="日常">日常</option>
+									<option th:value="学习">学习</option>
+									<option th:value="围炉夜话" selected="selected">围炉夜话</option>
+									<option th:value="询问">询问</option>
+									<option th:value="匿名">匿名</option>
+								</select>
+
+
+								<button class="btn btn-info" type="submit">提交</button>
+
+
+							</form>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+<!--		以下是测试的-->
+
+
+
+
+
+
+
+
+
+
+	</main>
+<!--	<div class="jumbotron">-->
+<!--		<h1>Hello, world!</h1>-->
+<!--		<p>...</p>-->
+<!--		<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>-->
+<!--	</div>-->
+
+		<!-- Bootstrap core JavaScript
+    ================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"></script>
+		<script type="text/javascript" src="asserts/js/popper.min.js"></script>
+		<script type="text/javascript" src="asserts/js/bootstrap.min.js"></script>
+
+		<!-- Icons -->
+		<script type="text/javascript" src="asserts/js/feather.min.js"></script>
+		<script>
+			feather.replace()
+		</script>
+
+		<!-- Graphs -->
+		<script type="text/javascript" src="asserts/js/Chart.min.js"></script>
+		<script>
+			var ctx = document.getElementById("myChart");
+			var myChart = new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+					datasets: [{
+						data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+						lineTension: 0,
+						backgroundColor: 'transparent',
+						borderColor: '#007bff',
+						borderWidth: 4,
+						pointBackgroundColor: '#007bff'
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: false
+							}
+						}]
+					},
+					legend: {
+						display: false,
+					}
+				}
+			});
+
+		</script>
+	<script>
+		fetch('https://v1.hitokoto.cn')
+				.then(response => response.json())
+				.then(data => {
+					const hitokoto = document.querySelector('#hitokoto_text')
+					// hitokoto.href = `https://hitokoto.cn/?uuid=${data.uuid}`
+					hitokoto.innerText = data.hitokoto
+				})
+				.catch(console.error)
+	</script>
+
+	</body>
+
+</html>

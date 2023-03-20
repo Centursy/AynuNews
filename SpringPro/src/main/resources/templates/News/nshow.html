@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<style>
+	.btn-page {
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		border-radius: 2px;
+		-moz-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2);
+		-webkit-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2);
+		box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2);
+		padding: 5px 10px;
+	}
+	.btn-active {
+		color: mintcream;/*字体*/
+		background-color: #0d69af;/*背景*/
+		border-color: #0d69af;/*边界*/
+	}
+	.badge {
+		display: inline-block;
+		min-width: 10px;
+		padding: 3px 7px;
+		font-size: 12px;
+		font-weight: bold;
+		line-height: 1;
+		color: #fff;
+		text-align: center;
+		white-space: nowrap;
+		vertical-align: middle;
+		background-color: #007bff;
+		border-radius: 10px;
+	}
+	.list-group-item > .badge {
+		float: right;
+	}
+	.page-header {
+		padding-bottom: 9px;
+		margin: 40px 0 20px;
+		border-bottom: 1px solid #eeeeee;
+	}
+	.input-group-addon {
+		padding: 6px 12px;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 1;
+		color: #555555;
+		text-align: center;
+		background-color: #eeeeee;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		display: table-cell;
+
+		vertical-align: middle;
+	}
+
+	.navbar-text {
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+
+
+</style>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>[[${news.getTitle()}]]</title>
+		<!-- Bootstrap core CSS -->
+		<link th:href="@{/asserts/css/bootstrap.min.css}" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+		<style type="text/css">
+			/* Chart.js */
+			
+			@-webkit-keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			@keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			.chartjs-render-monitor {
+				-webkit-animation: chartjs-render-animation 0.001s;
+				animation: chartjs-render-animation 0.001s;
+			}
+		</style>
+	</head>
+
+	<body>
+	<!--复用，顶栏-->
+<!--	传参数，高亮-->
+		<div th:insert="~{coomons/coomons::title}"></div>
+
+		<div class="container-fluid">
+			<div class="row">
+<!--	复用，侧边栏-->
+				<div th:insert="~{coomons/coomons::sidebar}"></div>
+			</div>
+		</div>
+	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+
+
+		<div class="page-header">
+			<h1>[[${news.getTitle()}]]</h1><small>发贴人：无名氏</small>
+		</div>
+
+
+		<div style="width: 60%;display: inline-block;padding: 10px;">
+
+			<h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp[[${news.getNews()}]]</h3>
+
+			<pre>
+
+
+
+
+
+
+
+
+
+
+
+
+			</pre>
+			<div class="page-header">
+				<h5><span class="badge badge-secondary">评论</span></h5>
+			</div>
+
+
+			<div th:each="logs:${logs}">
+			<div class="card" >
+				<div class="card-header">
+					[[${logs.getTitle()}]]
+				</div>
+				<div class="card-body">
+					<blockquote class="blockquote mb-0">
+						<p th:text="${logs.getLog()}">A well-known quote, contained in a blockquote element.</p>
+						<footer class="blockquote-footer">无名氏&nbsp&nbsp发布于&nbsp&nbsp<cite title="Source Title" th:text="${#dates.format(logs.getTime(),'MM-dd HH:mm' )}">Source Title</cite></footer>
+					</blockquote>
+				</div>
+
+			</div>
+				<pre>
+
+				</pre>
+
+			</div>
+
+
+		</div>
+
+
+
+
+
+		<div style="width: 30%;display: inline-block;float: right;padding: 10px;border-radius: 4px;">
+
+
+
+			<!--			<form role="form" style="width: 70%" th:action="@{/newssubmit}">-->
+			<!--				<div class="form-group">-->
+
+			<!--					<label >标签</label>-->
+			<!--					<input type="text" class="form-control" placeholder="文本输入">-->
+			<!--				</div>-->
+			<!--				<div class="form-group">-->
+			<!--					<label >正文</label>-->
+			<!--					<textarea class="form-control" rows="3"></textarea>-->
+			<!--				</div>-->
+			<!--				<p style="color: red" th:text="写个字再交"></p>-->
+			<!--				<button class="btn btn-info" type="submit">提交</button>-->
+
+			<!--			</form>-->
+
+
+
+
+			<div class="card">
+				<div class="card-header">
+					在此跟帖！
+				</div>
+				<div class="card-body" >
+					<form role="form" th:action="@{/newslogn}">
+						<input type="hidden" name="lzid" th:value="${news.getId()}">
+						<input type="hidden" name="loguser" th:value="${session.loginUser}">
+						<div class="form-group">
+
+							<label >标签</label>
+							<input type="text" class="form-control" placeholder="写标题，不写将无法提交哦" name="title">
+						</div>
+						<div class="form-group">
+							<label >正文</label>
+							<textarea class="form-control" rows="3" placeholder="在此输入正文" name="log"></textarea>
+						</div>
+
+
+
+
+						<button class="btn btn-info" type="submit">提交</button>
+
+
+					</form>
+				</div>
+			</div>
+
+
+
+
+
+		</div>
+
+<!--		以下是测试的-->
+
+
+
+
+
+
+
+
+
+
+	</main>
+<!--	<div class="jumbotron">-->
+<!--		<h1>Hello, world!</h1>-->
+<!--		<p>...</p>-->
+<!--		<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>-->
+<!--	</div>-->
+
+		<!-- Bootstrap core JavaScript
+    ================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"></script>
+		<script type="text/javascript" src="asserts/js/popper.min.js"></script>
+		<script type="text/javascript" src="asserts/js/bootstrap.min.js"></script>
+
+		<!-- Icons -->
+		<script type="text/javascript" src="asserts/js/feather.min.js"></script>
+		<script>
+			feather.replace()
+		</script>
+
+		<!-- Graphs -->
+		<script type="text/javascript" src="asserts/js/Chart.min.js"></script>
+		<script>
+			var ctx = document.getElementById("myChart");
+			var myChart = new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+					datasets: [{
+						data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+						lineTension: 0,
+						backgroundColor: 'transparent',
+						borderColor: '#007bff',
+						borderWidth: 4,
+						pointBackgroundColor: '#007bff'
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: false
+							}
+						}]
+					},
+					legend: {
+						display: false,
+					}
+				}
+			});
+
+		</script>
+	<script>
+		fetch('https://v1.hitokoto.cn')
+				.then(response => response.json())
+				.then(data => {
+					const hitokoto = document.querySelector('#hitokoto_text')
+					// hitokoto.href = `https://hitokoto.cn/?uuid=${data.uuid}`
+					hitokoto.innerText = data.hitokoto
+				})
+				.catch(console.error)
+	</script>
+
+	</body>
+
+</html>

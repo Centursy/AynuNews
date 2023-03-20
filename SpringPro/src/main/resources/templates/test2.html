@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<style>
+	.btn-page {
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		border-radius: 2px;
+		-moz-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2);
+		-webkit-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2);
+		box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2);
+		padding: 5px 10px;
+	}
+	.btn-active {
+		color: mintcream;/*字体*/
+		background-color: #0d69af;/*背景*/
+		border-color: #0d69af;/*边界*/
+	}
+	.badge {
+		display: inline-block;
+		min-width: 10px;
+		padding: 3px 7px;
+		font-size: 12px;
+		font-weight: bold;
+		line-height: 1;
+		color: #fff;
+		text-align: center;
+		white-space: nowrap;
+		vertical-align: middle;
+		background-color: #007bff;
+		border-radius: 10px;
+	}
+	.list-group-item > .badge {
+		float: right;
+	}
+	.page-header {
+		padding-bottom: 9px;
+		margin: 40px 0 20px;
+		border-bottom: 1px solid #eeeeee;
+	}
+
+	.box{
+		width: 500px;
+		line-height: 100px;
+		margin: 100px auto;
+		background-color: black;
+		color: #fff;
+		text-align: center;
+		font-size: 50px;
+	}
+
+</style>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>Dashboard Template for Bootstrap</title>
+		<!-- Bootstrap core CSS -->
+		<link th:href="@{/asserts/css/bootstrap.min.css}" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+
+		<style type="text/css">
+			/* Chart.js */
+			
+			@-webkit-keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			@keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			.chartjs-render-monitor {
+				-webkit-animation: chartjs-render-animation 0.001s;
+				animation: chartjs-render-animation 0.001s;
+			}
+		</style>
+	</head>
+
+	<body>
+	<!--复用，顶栏-->
+<!--	传参数，高亮-->
+		<div th:insert="~{coomons/coomons::title}"></div>
+
+		<div class="container-fluid">
+			<div class="row">
+<!--	复用，侧边栏-->
+				<div th:insert="~{coomons/coomons::sidebar(active='main.html')}"></div>
+			</div>
+		</div>
+	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+<!--			<div class="jumbotron">-->
+<!--				<h1>Hello, world!</h1>-->
+<!--				<p>...</p>-->
+<!--				<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>-->
+<!--			</div>-->
+
+
+<!--		轮播-->
+		<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+				<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+				<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+				<li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+				<li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
+				<li data-target="#carouselExampleCaptions" data-slide-to="5"></li>
+
+			</ol>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<a th:href="@{/zonghe}"><img src="https://i.328888.xyz/2023/03/17/LnIxa.png" class="d-block w-100" alt="..."></a>
+					<div class="carousel-caption d-none d-md-block">
+						<h5>综合板块</h5>
+						<p>欢迎来到综合版，想要特定分区请使用左侧分区栏</p>
+					</div>
+				</div>
+
+
+				<div class="carousel-item">
+					<a th:href="@{/richang}"><img src="https://i.328888.xyz/2023/03/17/LnlsV.png" class="d-block w-100" alt="..."></a>
+					<div class="carousel-caption d-none d-md-block">
+						<h5>日常</h5>
+						<p>我们所度过的每个平凡日常，也许就是接连发生的奇迹</p>
+					</div>
+				</div>
+
+				<div class="carousel-item">
+					<a th:href="@{/xuexi}"><img src="https://i.328888.xyz/2023/03/17/LUp1J.png" class="d-block w-100" alt="..."></a>
+					<div class="carousel-caption d-none d-md-block">
+						<h5>学习</h5>
+						<p>大学生们，还是要以学习为主啊！</p>
+					</div>
+				</div>
+
+				<div class="carousel-item">
+					<a th:href="@{/weilu}"><img src="https://i.328888.xyz/2023/03/17/LUIDQ.png" class="d-block w-100" alt="..."></a>
+					<div class="carousel-caption d-none d-md-block">
+						<h5>围炉夜话</h5>
+						<p>倾听心灵的故事，分享生活的温暖。</p>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<a th:href="@{/xunwen}"><img src="https://i.328888.xyz/2023/03/17/LUA0x.png" class="d-block w-100" alt="..."></a>
+					<div class="carousel-caption d-none d-md-block">
+						<h5>询问区</h5>
+						<p>寻求帮助和解答的地方，在这里学习生活</p>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<a th:href="@{/niming}"><img src="https://i.328888.xyz/2023/03/17/LDFaZ.png" class="d-block w-100" alt="..."></a>
+					<div class="carousel-caption d-none d-md-block">
+						<h5>匿名板块</h5>
+						<p>在这里，你可以是任何人。但也匿名之余请注意社区发帖规范</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div style="width: 60%;display: inline-block">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<span class="badge" style="color: #ffffff">2007-02-03</span>
+					Cras justo odio
+				</li>
+				<li class="list-group-item">
+					<span class="badge" style="color: #ffffff">2007-02-03</span>
+					Cras justo odio
+				</li>
+				<li class="list-group-item">
+					<span class="badge" style="color: #ffffff">2007-02-03</span>
+					Cras justo odio
+				</li>
+				<li class="list-group-item">
+					<span class="badge" style="color: #ffffff">2007-02-03</span>
+					Cras justo odio
+				</li>
+
+			</ul>
+
+		</div>
+
+		<div style="width: 20%;display: inline-block;float: right">
+			<ul class="list-group">
+				<li class="list-group-item">Cras justo odio</li>
+				<li class="list-group-item">Dapibus ac facilisis in</li>
+				<li class="list-group-item">Morbi leo risus</li>
+				<li class="list-group-item">Porta ac consectetur ac</li>
+				<li class="list-group-item">Vestibulum at eros</li>
+			</ul>
+
+		</div>
+
+<!--以下是测试用-->
+
+		<div class="row">
+			<div class="col-4">
+				<div class="list-group" id="list-tab" role="tablist">
+					<a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Home</a>
+					<a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
+					<a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Messages</a>
+					<a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Settings</a>
+				</div>
+			</div>
+			<div class="col-8">
+				<div class="tab-content" id="nav-tabContent">
+					<div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">很好很号</div>
+					<div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">不好！</div>
+					<div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
+					<div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+				</div>
+			</div>
+		</div>
+
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item">An item</li>
+			<li class="list-group-item">A second item <a href="#" class="badge badge-info">Info</a></li>
+			<li class="list-group-item">A third item</li>
+			<li class="list-group-item">A fourth item</li>
+			<li class="list-group-item">And a fifth one</li>
+		</ul>
+
+
+		<div class="accordion" id="accordionExample">
+			<div class="card">
+				<div class="card-header" id="headingOne">
+					<h2 class="mb-0">
+						<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							Collapsible Group Item #1
+						</button>
+					</h2>
+				</div>
+
+				<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+					<div class="card-body">
+						Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header" id="headingTwo">
+					<h2 class="mb-0">
+						<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+							Collapsible Group Item #2
+						</button>
+					</h2>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+					<div class="card-body">
+						Some placeholder content for the second accordion panel. This panel is hidden by default.
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-badge-ar-fill" viewBox="0 0 16 16">
+			<path d="m6.031 8.574-.734-2.426h-.052L4.51 8.574h1.52zm3.642-2.641v1.938h1.033c.66 0 1.068-.316 1.068-.95 0-.64-.422-.988-1.05-.988h-1.05z"/>
+			<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm4.265 5.458h2.004L6.739 11H8L5.996 5.001H4.607L2.595 11h1.2l.47-1.542zM8.5 5v6h1.173V8.763h1.064L11.787 11h1.327L11.91 8.583C12.455 8.373 13 7.779 13 6.9c0-1.147-.773-1.9-2.105-1.9H8.5z"/>
+		</svg>
+
+
+			<div class="row gx-4 gx-lg-5 justify-content-center">
+				<div class="col-md-10 col-lg-8 col-xl-7">
+
+					<h2 class="section-heading">Reaching for the Stars</h2>
+					<p>亲爱的同学们，大家好！我是这个校内论坛的创建者，也是一名普通的大学生。今天，我想在这里和大家分享一下我的建站心得，希望能够得到大家的支持和理解</p>
+					<p>我建立这个论坛的目的，是为了让同学们能够在这里更愉快地交流、学习、娱乐。我觉得，在我们忙碌而紧张的学习生活中，有一个自己的空间和社区，是非常重要和有意义的。我们可以在这里分享自己的心情、经历、见闻、知识、爱好等等，也可以在这里认识更多志同道合的朋友，互相帮助、鼓励、支持。我希望这个论坛能够成为我们大家共同的家园，让我们感受到温暖和欢乐。</p>
+					<p>当然，建立一个论坛并不是一件容易的事情，也不是一件完美的事情。在建站过程中，我遇到了很多困难和挑战，比如技术问题、内容管理问题、用户反馈问题等等。我尽力去解决它们，并且不断地改进和完善论坛的功能和界面。但是，我知道我的能力有限，我的水平有待提高。所以，在这里，请大家多多包涵我的不足之处，并且积极地给我提出宝贵的意见和建议。我会认真听取并且采纳你们的声音。</p>
+					<p>同时，请大家在使用论坛时，请遵守论坛守则，并且注意文明礼貌。请不要发表违法或者违反校规校纪或者伤害他人感情或者影响论坛秩序或者无关紧要或者低俗无聊或者其他不良内容，请尊重他人并且保护自己，请理性地表达自己并且客观地看待他人，请珍惜这个平台并且贡献自己，请与其他用户友好相处并且共同维护论坛氛围。</p>
+					<p>最后，请大家玩得开心！请享受这个论坛带给你们的乐趣</p>
+					<a href="#!"><img class="img-fluid" src="https://i.328888.xyz/2023/03/17/L2hYV.png" alt="..." /></a>
+
+				</div>
+			</div>
+
+		<div class="box">123</div>
+
+<!--		以下备用-->
+
+		<div class="accordion" id="accordionExample">
+			<div class="card">
+				<div class="card-header" id="headingOne">
+					<h2 class="mb-0">
+						<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color: black">
+							请仔细阅读守则后发帖！
+						</button>
+					</h2>
+				</div>
+
+				<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+					<div class="card-body">
+
+						<ul>
+							<li>发帖内容应与版块主题相关，可轻微跑题但不要发广告哦。</li>
+							<li>发帖时请注意文明用语，人身攻击是不允许的。</li>
+							<li>虽然都是同学但也要注意隐私，无故暴露他人隐私是不允许的。</li>
+							<li>请避免涉及敏感或违法的话题，不得违反国家法律法规。</li>
+							<li>以上，玩的愉快。</li>
+						</ul>
+
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header" id="headingTwo">
+					<h2 class="mb-0">
+						<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color: black">
+							点此发帖
+						</button>
+					</h2>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+					<div class="card-body">
+<!--						提交表格-->
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="materialContainer">
+			<div class="box">
+				<div class="title">登录</div>
+				<div class="input">
+					<label for="name">用户名</label>
+					<input type="text" name="name" id="name">
+					<span class="spin"></span>
+				</div>
+				<div class="input">
+					<label for="pass">密码</label>
+					<input type="password" name="pass" id="pass">
+					<span class="spin"></span>
+				</div>
+				<div class="button login">
+					<button>
+						<span>登录</span>
+						<i class="fa fa-check"></i>
+					</button>
+				</div>
+				<a href="javascript:" class="pass-forgot">忘记密码？</a>
+			</div>
+
+			<div class="overbox">
+				<div class="material-button alt-2">
+					<span class="shape"></span>
+				</div>
+				<div class="title">注册</div>
+				<div class="input">
+					<label for="regname">用户名</label>
+					<input type="text" name="regname" id="regname">
+					<span class="spin"></span>
+				</div>
+				<div class="input">
+					<label for="regpass">密码</label>
+					<input type="password" name="regpass" id="regpass">
+					<span class="spin"></span>
+				</div>
+				<div class="input">
+					<label for="reregpass">确认密码</label>
+					<input type="password" name="reregpass" id="reregpass">
+					<span class="spin"></span>
+				</div>
+				<div class="button">
+					<button>
+						<span>注册</span>
+					</button>
+				</div>
+			</div>
+
+		</div>
+
+
+
+	</main>
+<!--	<div class="jumbotron">-->
+<!--		<h1>Hello, world!</h1>-->
+<!--		<p>...</p>-->
+<!--		<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>-->
+<!--	</div>-->
+
+		<!-- Bootstrap core JavaScript
+    ================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"></script>
+		<script type="text/javascript" src="asserts/js/popper.min.js"></script>
+		<script type="text/javascript" src="asserts/js/bootstrap.min.js"></script>
+
+		<!-- Icons -->
+		<script type="text/javascript" src="asserts/js/feather.min.js"></script>
+		<script>
+			feather.replace()
+		</script>
+
+		<!-- Graphs -->
+		<script type="text/javascript" src="asserts/js/Chart.min.js"></script>
+		<script>
+			var ctx = document.getElementById("myChart");
+			var myChart = new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+					datasets: [{
+						data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+						lineTension: 0,
+						backgroundColor: 'transparent',
+						borderColor: '#007bff',
+						borderWidth: 4,
+						pointBackgroundColor: '#007bff'
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: false
+							}
+						}]
+					},
+					legend: {
+						display: false,
+					}
+				}
+			});
+
+		</script>
+	<script>
+		fetch('https://v1.hitokoto.cn')
+				.then(response => response.json())
+				.then(data => {
+					const hitokoto = document.querySelector('#hitokoto_text')
+					// hitokoto.href = `https://hitokoto.cn/?uuid=${data.uuid}`
+					hitokoto.innerText = data.hitokoto
+				})
+				.catch(console.error)
+	</script>
+
+<!--	时钟-->
+	<script>
+		// 1.获取元素
+		var box = document.querySelector('.box');
+		//2.使用定时器每隔一秒更新一次
+		setInterval(getTime, 1000);
+		function getTime() {
+			//3.利用时间函数获取系统时间
+			var time = new Date();
+			var year = time.getFullYear();//年
+			year = year < 10 ? '0' + year : year;
+			var mon = time.getMonth() + 1;//月
+			mon = mon < 10 ? '0' + mon : mon;
+			var date = time.getDate();//日
+			date = date < 10 ? '0' + date : date;
+			var h = time.getHours();//小时
+			h = h < 10 ? '0' + h : h;
+			var m = time.getMinutes();//分钟
+			m = m < 10 ? '0' + m : m;
+			var s = time.getSeconds();//秒
+			s = s < 10 ? '0' + s : s;
+			box.innerHTML = year + '年' + mon + '月' + date + '日' + '' + h + ':' + m + ':' + s;
+		}
+	</script>
+
+
+	<script src="https://eqcn.ajz.miesnfu.com/wp-content/plugins/wp-3d-pony/live2dw/lib/L2Dwidget.min.js"></script>
+	<script>
+		L2Dwidget.init({
+			"model": { "jsonPath":"https://unpkg.com/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json", "scale": 1, "hHeadPos":0.5, "vHeadPos":0.618 },
+			"display": { "position": "right", "width": 100, "height": 200, "hOffset": 0, "vOffset": 0 },
+			"mobile": { "show": true, "scale": 0.5 },
+			"react": { "opacityDefault": 0.7, "opacityOnHover": 0.2 }
+		});
+	</script>
+	<!--
+      其他可选的模型：
+        小帅哥： https://unpkg.com/live2d-widget-model-chitose@1.0.5/assets/chitose.model.json
+        萌娘：https://unpkg.com/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json
+        白猫：https://unpkg.com/live2d-widget-model-tororo@1.0.5/assets/tororo.model.json
+        黑猫： https://unpkg.com/live2d-widget-model-hijiki@1.0.5/assets/hijiki.model.json
+        小可爱（女）：https://unpkg.com/live2d-widget-model-koharu@1.0.5/assets/koharu.model.json
+        小可爱（男）：https://unpkg.com/live2d-widget-model-haruto@1.0.5/assets/haruto.model.json
+        初音：https://unpkg.com/live2d-widget-model-miku@1.0.5/assets/miku.model.json
+        圣职者妹妹：https://unpkg.com/live2d-widget-model-z16@1.0.5/assets/z16.model.json
+        茶杯犬：https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json
+        绿毛妹妹：https://unpkg.com/live2d-widget-model-tsumiki@1.0.5/assets/tsumiki.model.json
+        金龟子妹妹：https://unpkg.com/live2d-widget-model-unitychan@1.0.5/assets/unitychan.model.json
+        https://unpkg.com/live2d-widget-model-nito@1.0.5/assets/nito.model.json
+        https://unpkg.com/live2d-widget-model-ni-j@1.0.5/assets/ni-j.model.json
+        小阿狸： https://unpkg.com/live2d-widget-model-nico@1.0.5/assets/nico.model.json
+        https://unpkg.com/live2d-widget-model-nietzche@1.0.5/assets/nietzche.model.json
+        https://unpkg.com/live2d-widget-model-nipsilon@1.0.5/assets/nipsilon.model.json
+        女学生： https://unpkg.com/live2d-widget-model-hibiki@1.0.5/assets/hibiki.model.json
+    -->
+
+
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script>
+		$(function(){
+			function n(n,e,t){
+				return n.getAttribute(e)||t
+			}
+			function e(n){
+				return document.getElementsByTagName(n)
+			}
+			function t(){
+				var t=e("script"),o=t.length,i=t[o-1];
+				return{l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.6),c:n(i,"color","46,139,87"),n:n(i,"count",150)}
+			}
+			function o(){
+				a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+						c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+			}
+			function i(){
+				r.clearRect(0,0,a,c);
+				var n,e,t,o,m,l;
+				s.forEach(function(i,x){
+					for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+					null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+							l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+							t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+				}),
+						x(i)
+			}
+			var a,c,u,m=document.createElement("canvas"),d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+					x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+							function(n){
+								window.setTimeout(n,1e3/45)
+							},
+					w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+					window.onmousemove=function(n){
+						n=n||window.event,y.x=n.clientX,y.y=n.clientY
+					},
+					window.onmouseout=function(){
+						y.x=null,y.y=null
+					};
+			for(var s=[],f=0;d.n>f;f++){
+				var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+			}
+			u=s.concat([y]),
+					setTimeout(function(){i()},100)
+		});
+	</script>
+
+	</body>
+
+</html>
