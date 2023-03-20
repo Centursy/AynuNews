@@ -8,6 +8,8 @@
 ![002](https://user-images.githubusercontent.com/98018410/226302585-1977c581-b189-4626-afd5-5f24c8141450.png)
 和具体的页面，内有评论功能
 ![003](https://user-images.githubusercontent.com/98018410/226303482-3cdeba86-75ce-46f5-b9b6-f8e5686be584.png)
+管理员页面，  
+管理员账号为，admin，密码123
 ![004](https://user-images.githubusercontent.com/98018410/226303522-70a59692-4942-4319-90ec-9ddce44451c4.png)
 很多地方写的很乱，写了下注释，初学者多多谅解  
 内附数据库，  
