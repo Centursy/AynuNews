@@ -1,6 +1,6 @@
 # AynuNews
-校园新闻发布网站（其实做成了论坛。。）使用Springboot
-  前端使用bootstrap4模版
+校园新闻发布网站（其实做成了论坛。。）使用Springboot  
+前端使用bootstrap4模版  
 ## 具体效果如下
 登录页面
 ![001](https://user-images.githubusercontent.com/98018410/226301370-e6dddc91-013c-4edf-815e-18f1d16efa0d.png)
@@ -9,5 +9,6 @@
 和具体的页面，内有评论功能
 ![003](https://user-images.githubusercontent.com/98018410/226303482-3cdeba86-75ce-46f5-b9b6-f8e5686be584.png)
 ![004](https://user-images.githubusercontent.com/98018410/226303522-70a59692-4942-4319-90ec-9ddce44451c4.png)
-很多地方写的很乱，写了下注释，初学者多多谅解
-内附数据库，以上
+很多地方写的很乱，写了下注释，初学者多多谅解  
+内附数据库，  
+以上
