@@ -1,5 +1,5 @@
 # AynuNews 2.0
-校园新闻发布网站，自己做的毕设，后端使用springboot，前端使用thymeleaf,bootstrap4框架
+校园新闻发布网站，自己做的毕设，后端使用springboot，前端使用thymeleaf,bootstrap4框架  
 有三个模块，新闻，论坛，和管理
 ## 新增功能：
 增加了导航首页，可以去往三个页面，分别是新闻页，论坛页，和管理页  
