@@ -1,4 +1,4 @@
-# AynuNews
+# AynuNews 2.0
 校园新闻发布网站（其实做成了论坛。。）使用Springboot  
 自己做的毕设，昨晚看下来挺简陋的，嘛就这样吧  
 前端使用bootstrap4模版  
