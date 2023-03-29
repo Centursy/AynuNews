@@ -52,12 +52,12 @@ public class LoginController {
 
                 } else {
                     model.addAttribute("msg", "密码错误");
-                    return "index";
+                    return "loginl";
                 }
 
             } else {
                 model.addAttribute("msg", "用户不存在");
-                return "index";
+                return "loginl";
             }
         }
 
@@ -87,7 +87,7 @@ public class LoginController {
             if (user233 == null) {
                 userMapper.insert(user); //调用底层业务保存用户
                 model.addAttribute("msg", "注册成功，请返回登录");
-                return "index";
+                return "loginl";
             } else {
 
                 model.addAttribute("msg", "用户已存在");
@@ -104,6 +104,6 @@ public class LoginController {
     @RequestMapping("/user/logout")
     public String logout(HttpSession session){
         session.invalidate();
-        return "redirect:/index.html";
+        return "redirect:/login.html";
     }
 }

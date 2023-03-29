@@ -3,7 +3,7 @@
 
 <!--	顶部导航栏-->
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0" th:fragment="title">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="http://getbootstrap.com/docs/4.0/examples/dashboard/#">[[${session.loginUser}]],欢迎回来</a>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" th:href="@{/}">[[${session.loginUser}]],欢迎回来</a>
 <!--    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
     <div id="hitokoto">
         <a id="hitokoto_text" style="color: aliceblue;font-size: 15px">Hitokoto装载中(￣ε(#￣) Σ</a>
@@ -130,10 +130,111 @@
                 </ul>
             </div>
     <a href="http://www.aynu.edu.cn/"><img class="img-fluid" src="https://i.328888.xyz/2023/03/17/LrJVy.png" style="float: bottom" alt="..." /></a>
-        </nav>
+</nav>
 
 
+<!--管理员-->
+
+<!--	顶部导航栏-->
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0" th:fragment="adtitle">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" th:href="@{/}">管理员同志,欢迎回来</a>
+    <!--    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
+    <div id="hitokoto">
+        <a id="hitokoto_text" style="color: aliceblue;font-size: 15px">Hitokoto装载中(￣ε(#￣) Σ </a>
     </div>
-</div>
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" th:href="@{/admin/logout}">退出登录</a>
+        </li>
+    </ul>
+</nav>
+
+
+
+<!--侧边栏-->
+<nav class="col-md-2 d-none d-md-block bg-light sidebar" th:fragment="adsidebar">
+    <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a th:class="${active=='main.html'?'nav-link active':'nav-link'}" th:href="@{/admin}">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207l-5-5-5 5V13.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7.207Z"/>
+                    </svg>
+
+                    &nbsp&nbsp&nbsp主页 <span class="sr-only">(current)</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a th:class="${active=='post.html'?'nav-link active':'nav-link'}" th:href="@{/postnew}">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207l-5-5-5 5V13.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7.207Z"/>
+                    </svg>
+
+                    &nbsp&nbsp&nbsp提交新闻 <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item" th:if ="${session.this == 1} or ${session.this == 2}">
+            <a th:class="${active=='juda.html'?'nav-link active':'nav-link'}" th:href="@{/newjud}">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207l-5-5-5 5V13.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7.207Z"/>
+                </svg>
+
+                &nbsp&nbsp&nbsp新闻审核（初级） <span class="sr-only">(current)</span>
+            </a>
+            </li>
+            <li class="nav-item" th:if ="${session.this == 1} or ${session.this == 3}">
+                <a th:class="${active=='judb.html'?'nav-link active':'nav-link'}" th:href="@{/newjudb}">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207l-5-5-5 5V13.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7.207Z"/>
+                    </svg>
+
+                    &nbsp&nbsp&nbsp新闻审核（二级） <span class="sr-only">(current)</span>
+                </a>
+            </li>
+
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"  th:if ="${session.this == 1}">
+            <span>管理板块</span>
+            <a class="d-flex align-items-center text-muted" href="http://getbootstrap.com/docs/4.0/examples/dashboard/#">
+            </a>
+        </h6>
+        <ul class="nav flex-column mb-2" th:if ="${session.this == 1}">
+            <li class="nav-item">
+                <a th:class="${active=='userlist.html'?'nav-link active':'nav-link'}" th:href="@{/aduserlist}">
+
+                    用户管理
+                </a>
+            </li>
+            <li class="nav-item">
+                <a th:class="${active=='adad.html'?'nav-link active':'nav-link'}" th:href="@{/adlist}">
+
+                    用户管理(管理员)
+                </a>
+            </li>
+            <li class="nav-item">
+                <a th:class="${active=='newsa.html'?'nav-link active':'nav-link'}" th:href="@{/newslist}">
+
+                    新闻管理（论坛）
+                </a>
+            </li>
+            <li class="nav-item">
+                <a th:class="${active=='listed.html'?'nav-link active':'nav-link'}" th:href="@{/listed}">
+
+                    主页新闻（已发布）
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+</nav>
+
+
 
 </html>

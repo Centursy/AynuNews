@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.101.0">
+    <title>[[${news.getTitle()}]]</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/carousel/">
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/asserts/css/bootstrap.min.css}" rel="stylesheet">
+
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      pre {
+          white-space: pre-wrap;
+          word-wrap: break-word;
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link th:href="@{/asserts/css/carousel.css}" rel="stylesheet">
+  </head>
+  <body>
+    
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand">安阳师范学院</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse" >
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+              <a class="nav-link" th:href="@{/snews}">新闻主页 <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" th:href="@{/admlogin}">管理版</a>
+          </li>
+
+      </ul>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" th:href="@{/}">回到首页</a>
+            </li>
+        </ul>
+<!--      <form class="form-inline mt-2 mt-md-0">-->
+<!--        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">-->
+<!--        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+<!--      </form>-->
+    </div>
+  </nav>
+</header>
+
+<main role="main">
+
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+
+<!--        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label=" :  " preserveAspectRatio="xMidYMid slice" focusable="false"><title> </title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em"> </text></svg>-->
+
+        <img src="https://i.328888.xyz/2023/03/23/iivWu8.png" class="bd-placeholder-img" alt="...">
+
+        <div class="container">
+          <div class="carousel-caption text-left">
+            <h1>Aynu新闻站</h1>
+            <p>在此阅读学习最新消息，展示我们学校风采、传播我们学校声音、记录我们学校历史、反映我们学校现状，欢迎来到本平台</p>
+
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+<!--        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label=" :  " preserveAspectRatio="xMidYMid slice" focusable="false"><title> </title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em"> </text></svg>-->
+
+        <img src="https://i.328888.xyz/2023/03/23/iivzZw.png" class="bd-placeholder-img" alt="...">
+
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>我的师院</h1>
+            <p>师院以培养德智体美劳全面发展的高素质应用型人才为目标，以服务地方经济社会发展为宗旨，以立德树人为根本任务，以改革创新为动力源泉，以提升质量为核心主线。</p>
+
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+<!--        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label=" :  " preserveAspectRatio="xMidYMid slice" focusable="false"><title> </title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em"> </text></svg>-->
+
+        <img src="https://i.328888.xyz/2023/03/23/iivFex.png" class="bd-placeholder-img" alt="...">
+
+        <div class="container">
+          <div class="carousel-caption text-left">
+            <h1>时代在召唤</h1>
+            <p>勇担时代重任，勇于改革创新，勇攀科技高峰</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-target="#myCarousel" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-target="#myCarousel" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </button>
+  </div>
+
+<!--文章-->
+
+    <div class="container">
+
+        <div class="col-md-8 blog-main">
+            <h3 class="pb-4 mb-4 font-italic border-bottom" th:text="${news.getType()}">
+                From the Firehose
+            </h3>
+
+            <div class="blog-post">
+                <h2 class="blog-post-title" th:text="${news.getTitle()}">Sample blog post</h2>
+                <p class="blog-post-meta">本文作者：[[${news.getWriter()}]]</p>
+                <p class="blog-post-meta" th:text="${#dates.format(news.getTime(),'发布于——MM月dd日 HH:mm' )}">January 1, 2014 by <a href="#">Mark</a></p>
+
+                <pre><h3>[[${news.getWord()}]]</h3></pre>
+                <pre>
+
+
+
+
+
+
+
+
+
+
+                </pre>
+
+            </div><!-- /.blog-post -->
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+  <!-- FOOTER -->
+  <footer class="container">
+
+      <p>&copy; 2035-2077 AYNU_NEWS &middot; By Century</p>
+  </footer>
+</main>
+
+
+<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"></script>
+<script type="text/javascript" src="asserts/js/popper.min.js"></script>
+<script type="text/javascript" src="asserts/js/bootstrap.min.js"></script>
+
+<!-- Icons -->
+<script type="text/javascript" src="asserts/js/feather.min.js"></script>
+<script>
+  feather.replace()
+</script>
+
+<!-- Graphs -->
+<script type="text/javascript" src="asserts/js/Chart.min.js"></script>
+      
+  </body>
+</html>

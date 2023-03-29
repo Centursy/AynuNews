@@ -63,12 +63,12 @@
 	<body>
 	<!--复用，顶栏-->
 <!--	传参数，高亮-->
-		<div th:insert="~{coomons/coomonsb::title}"></div>
+		<div th:insert="~{coomons/coomons::adtitle}"></div>
 
 		<div class="container-fluid">
 			<div class="row">
 <!--	复用，侧边栏-->
-				<div th:insert="~{coomons/coomonsa::sidebar(active='newsa.html')}"></div>
+				<div th:insert="~{coomons/coomons::adsidebar(active='newsa.html')}"></div>
 
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
@@ -94,8 +94,8 @@
 								<td th:text="${#dates.format(emp.getTime(),'MM-dd HH:mm' )}"></td>
 
 								<td>
-									<a class="btn btn-sm btn-primary" th:href="@{/newsa/}+${emp.getId()}">查看此条目</a>
-									<a class="btn btn-sm btn-danger" th:href="@{/newsadel/}+${emp.getId()}">删除</a>
+									<a class="btn btn-sm btn-primary" th:href="@{/newslist/}+${emp.getId()}">查看此条目</a>
+									<a class="btn btn-sm btn-danger" th:href="@{/newsqdel/}+${emp.getId()}">删除</a>
 								</td>
 							</tr>
 							</tbody>
@@ -111,12 +111,12 @@
 					</div>
 					<!-- 分页导航条 -->
 					<div class="pagenation">
-						<a th:href="@{/newsa/}"><span class="btn-page btn-default">首页</span></a>
-						<a th:href="@{/newsa/(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}"><span
+						<a th:href="@{/newslist/}"><span class="btn-page btn-default">首页</span></a>
+						<a th:href="@{/newslist/(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}"><span
 								class="btn-page btn-default">上一页</span></a>
 						<!-- 遍历导航页 -->
 						<a th:each="page,pageStat:${pageInfo.navigatepageNums}"
-						   th:href="@{/newsa/(pageNum=${page})}">
+						   th:href="@{/newslist/(pageNum=${page})}">
                                         <span th:if="${page}==${pageInfo.pageNum}">
                                             <span class="btn-page btn-active" th:text="${page}"></span>
                                         </span>
@@ -126,9 +126,9 @@
 						</a>
 						<!-- 导航页 -->
 
-						<a th:href="@{/newsa/(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}"><span
+						<a th:href="@{/newslist/(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}"><span
 								class="btn-page btn-default">下一页</span></a>
-						<a th:href="@{/newsa/(pageNum=${pageInfo.pages})}"><span class="btn-page btn-default">尾页</span></a>
+						<a th:href="@{/newslist/(pageNum=${pageInfo.pages})}"><span class="btn-page btn-default">尾页</span></a>
 					</div>
 
 

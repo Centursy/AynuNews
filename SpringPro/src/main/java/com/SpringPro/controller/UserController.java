@@ -2,6 +2,7 @@ package com.SpringPro.controller;
 
 import com.SpringPro.mapper.UserMapper;
 import com.SpringPro.pojo.User;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +65,34 @@ public class UserController {
     public String editu(User user){
         userMapper.updateById(user);
         return "redirect:/Main.html";
+    }
+
+    // @GetMapping("/quary")
+    // public String qua(String name,Model model){
+    //     QueryWrapper<User> objectQueryWrapper = new QueryWrapper<>();
+    //     objectQueryWrapper.like("id",name);
+    //     List<User> users = userMapper.selectList(objectQueryWrapper);
+    //     model.addAttribute("user",users);
+    //     model.addAttribute("name",name);
+    //     return "user/userlist";
+    //
+    // }
+
+    @RequestMapping("/quary")
+    public String qula(String name,Model model, @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum, @RequestParam(defaultValue = "10", value = "pageSize") Integer pageSize){
+
+
+        QueryWrapper<User> objectQueryWrapper = new QueryWrapper<>();
+        objectQueryWrapper.like("id",name);
+
+        PageHelper.startPage(pageNum, pageSize);
+        List<User> users = userMapper.selectList(objectQueryWrapper);
+        PageInfo<User> pageInfo = new PageInfo<>(users);
+
+        model.addAttribute("user",users);
+        model.addAttribute("name",name);
+        model.addAttribute("pageInfo", pageInfo);
+
+        return "user/userlista";
     }
 }

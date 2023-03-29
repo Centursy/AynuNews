@@ -13,11 +13,13 @@ public class MyMvcConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index");
-        registry.addViewController("/index.html").setViewName("index");
+        registry.addViewController("/login.html").setViewName("loginl");
         registry.addViewController("/Main.html").setViewName("test");
         registry.addViewController("/test").setViewName("test2");
         registry.addViewController("/reg").setViewName("register");
         registry.addViewController("/233").setViewName("233");
+        registry.addViewController("/bbs").setViewName("indexb");
+        registry.addViewController("/adm").setViewName("indexc");
     }
 
     //拦截器
@@ -25,6 +27,6 @@ public class MyMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginHandlerInterceptor()).
                 addPathPatterns("/**").
-                excludePathPatterns("/index.html","/reg","/rege","/","/login","/asserts/**");
+                excludePathPatterns("/loginl.html","/reg","/rege","/","/login","/asserts/**","/bbs","/adm","/admlogin","/snews","/indnewss/**","/newlis/**","/login.html","/adlogin");
     }
 }

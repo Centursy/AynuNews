@@ -15,7 +15,7 @@
 
          if (loginUser==null){        //未登录
              request.setAttribute("msg","没有权限，请先登录");
-             request.getRequestDispatcher("/index.html").forward(request,response);
+             request.getRequestDispatcher("/loginl.html").forward(request,response);
              return false;
          }else {
              return true;

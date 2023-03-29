@@ -142,7 +142,7 @@
 						[[${news.getTitle()}]]
 
 
-						<span class="badge badge-primary">
+						<span th:class="${news.getType()=='日常'?'badge badge-success':(news.getType()=='学习'?'badge badge-warning':(news.getType()=='围炉夜话'?'badge badge-secondary':'badge badge-primary'))}">
 							[[${news.getType()}]]
 						</span>
 

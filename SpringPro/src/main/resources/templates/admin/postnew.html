@@ -37,27 +37,6 @@
 		margin: 40px 0 20px;
 		border-bottom: 1px solid #eeeeee;
 	}
-	.input-group-addon {
-		padding: 6px 12px;
-		font-size: 14px;
-		font-weight: 400;
-		line-height: 1;
-		color: #555555;
-		text-align: center;
-		background-color: #eeeeee;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		display: table-cell;
-
-		vertical-align: middle;
-	}
-
-	.navbar-text {
-		margin-top: 15px;
-		margin-bottom: 15px;
-	}
-
-
 </style>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
@@ -67,7 +46,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 
-		<title>[[${news.getTitle()}]]</title>
+		<title>成功！</title>
 		<!-- Bootstrap core CSS -->
 		<link th:href="@{/asserts/css/bootstrap.min.css}" rel="stylesheet">
 
@@ -103,137 +82,61 @@
 
 	<body>
 	<!--复用，顶栏-->
-<!--	传参数，高亮-->
-		<div th:insert="~{coomons/coomons::title}"></div>
+	<!--	传参数，高亮-->
+	<div th:insert="~{coomons/coomons::adtitle}"></div>
 
 		<div class="container-fluid">
 			<div class="row">
-<!--	复用，侧边栏-->
-				<div th:insert="~{coomons/coomons::sidebar}"></div>
+
+				<!--	复用，侧边栏-->
+				<div th:insert="~{coomons/coomons::adsidebar(active='post.html')}"></div>
+
 			</div>
 		</div>
 	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
 
+		<div class="container">
 
-		<div class="page-header">
-			<h1>[[${news.getTitle()}]]</h1><small>发贴人：[[${news.getUser()}]]</small>
-		</div>
+			<form th:action="@{/snewspost}">
+			<p><h1>撰写文稿</h1></p>
+				<p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
 
-
-		<div style="width: 60%;display: inline-block;padding: 10px;">
-
-			<pre><h3>[[${news.getNews()}]]</h3></pre>
-
-			<pre>
-
-
-
-
-
-
-
-
-
-
-
-
-			</pre>
-			<div class="page-header">
-				<h5><span class="badge badge-secondary">评论</span></h5>
-			</div>
-
-
-			<div th:each="logs:${logs}">
-			<div class="card" >
-				<div class="card-header">
-					[[${logs.getTitle()}]]
+			<input type="hidden" name="writer" th:value="${session.loginUser}">
+			<input type="hidden" name="emo" th:value="1">
+				<input type="hidden" name="wlevel" th:value="${session.this}">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">Title</span>
 				</div>
-				<div class="card-body">
-					<blockquote class="blockquote mb-0">
-<!--						<p>&nbsp&nbsp&nbsp&nbsp[[${logs.getLog()}]]</p>-->
-						<pre th:text="${logs.getLog()}"></pre>
-						<footer class="blockquote-footer">[[${logs.getLoguser()}]]&nbsp&nbsp发布于&nbsp&nbsp<cite title="Source Title" th:text="${#dates.format(logs.getTime(),'MM-dd HH:mm' )}">Source Title</cite></footer>
-					</blockquote>
-				</div>
-
-			</div>
-				<pre>
-
-				</pre>
-
+			<input type="text" class="form-control" placeholder="在此输入标题" aria-label="Username" aria-describedby="basic-addon1" name="title">
 			</div>
 
+
+			<label>输入正文</label>
+
+
+			<div class="input-group">
+
+				<textarea class="form-control" style="height: 300px" name="word"></textarea>
+			</div>
+
+			<div class="form-group col-md-4">
+				<label for="inputState">提交分区</label>
+				<select id="inputState" class="form-control" name="type">
+					<option selected value="安师新闻">安师新闻</option>
+					<option value="院系速递">院系速递</option>
+					<option value="通知公告">通知公告</option>
+					<option value="电子校报">电子校报</option>
+					<option value="媒体安师">媒体安师</option>
+				</select>
+			</div>
+
+			<button type="submit" class="btn btn-primary" style="float: right">Primary</button>
+
+			</form>
 
 		</div>
-
-
-
-
-
-		<div style="width: 30%;display: inline-block;float: right;padding: 10px;border-radius: 4px;">
-
-
-
-			<!--			<form role="form" style="width: 70%" th:action="@{/newssubmit}">-->
-			<!--				<div class="form-group">-->
-
-			<!--					<label >标签</label>-->
-			<!--					<input type="text" class="form-control" placeholder="文本输入">-->
-			<!--				</div>-->
-			<!--				<div class="form-group">-->
-			<!--					<label >正文</label>-->
-			<!--					<textarea class="form-control" rows="3"></textarea>-->
-			<!--				</div>-->
-			<!--				<p style="color: red" th:text="写个字再交"></p>-->
-			<!--				<button class="btn btn-info" type="submit">提交</button>-->
-
-			<!--			</form>-->
-
-
-
-			<div class="card">
-				<div class="card-header">
-					在此跟帖！
-				</div>
-				<div class="card-body" >
-					<form role="form" th:action="@{/newslog}">
-						<input type="hidden" name="lzid" th:value="${news.getId()}">
-						<input type="hidden" name="loguser" th:value="${session.loginUser}">
-						<div class="form-group">
-
-							<label >标签</label>
-							<input type="text" class="form-control" placeholder="写标题，不写将无法提交哦" name="title">
-						</div>
-						<div class="form-group">
-							<label >正文</label>
-							<textarea class="form-control" rows="3" placeholder="在此输入正文" name="log"></textarea>
-						</div>
-
-
-
-
-						<button class="btn btn-info" type="submit">提交</button>
-
-
-					</form>
-				</div>
-			</div>
-
-
-
-
-
-		</div>
-
-<!--		以下是测试的-->
-
-
-
-
-
-
-
 
 
 

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title th:text="#{login.title}"></title>
+		<!-- Bootstrap core CSS -->
+		<link th:href="@{/asserts/css/bootstrap.min.css}" rel="stylesheet">
+		<!-- Custom styles for this template -->
+<!--		<link th:href="@{/asserts/css/signin.css}" rel="stylesheet">-->
+		<!-- Custom styles for this template -->
+		<link th:href="@{/asserts/css/floating-labels.css}" rel="stylesheet">
+	</head>
+	<style>
+		body{
+			background-color: rgb(255,255,255,3);
+			/*width: 100%;*/
+			/*height: 100%;*/
+		}
+
+		.bg{
+			position: fixed;
+			opacity: 0.5;
+			width: 100%;
+			height: auto;
+			z-index: -1;
+		}
+
+	</style>
+<!--	style="background-image: url(https://t.lizi.moe/pc);opacity: 0.6""-->
+<!--	<img class="bg" src="https://t.lizi.moe/fj">-->
+	<body>
+
+
+<!--		<form class="form-signin" th:action="@{/login}">-->
+<!--			<img class="mb-4" src="/asserts/img/bootstrap-solid.svg" alt="" width="400" height="auto" href="www.baidu.com">-->
+<!--&lt;!&ndash;			<h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">Please sign in</h1>&ndash;&gt;-->
+
+<!--			<p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>-->
+
+<!--			<label class="sr-only">Username</label>-->
+<!--			<input type="text" name="username" class="form-control" th:placeholder="#{login.username}" required="" autofocus="">-->
+<!--			<label class="sr-only">Password</label>-->
+<!--			<input type="password" name="password" class="form-control" th:placeholder="#{login.password}" required="">-->
+<!--			<div class="checkbox mb-3">-->
+<!--				<label>-->
+<!--					<a class="mt-5 mb-3 text-muted" th:href="@{/reg}">没有帐号？点击注册</a>-->
+<!--        </label>-->
+<!--			</div>-->
+<!--			<button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.btn}">Sign in</button>-->
+
+
+
+
+<!--			<p class="mt-5 mb-3 text-muted">© 2035-2077 </p>-->
+
+<!--		</form>-->
+
+<form class="form-signin" th:action="@{/adlogin}">
+	<div class="text-center mb-4">
+		<img class="mb-4" src="/asserts/img/bootstrap-solid.svg" alt="" width="400" height="auto">
+		<h1 class="h3 mb-3 font-weight-normal">管理员登录</h1>
+		<p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+<!--		<p>欢迎来到安阳师范学院新闻发布站——七嘴八舌论坛分区<code>AynuNews</code>自由发言请遵守版规<a href="http://www.aynu.edu.cn/">安阳师范</a>是一座历史悠久的大学，欢迎来到本校</p>-->
+	</div>
+
+	<div class="form-label-group">
+		<input type="text" id="inputEmail" name="username" class="form-control" placeholder="输入用户名" required autofocus>
+		<label for="inputEmail">用户名</label>
+	</div>
+
+	<div class="form-label-group">
+		<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+		<label for="inputPassword">密码输入(つд⊂)</label>
+	</div>
+
+	<div class="checkbox mb-3">
+		<div class="text-center mb-4">
+			<a class="mt-5 mb-3 text-muted" th:href="@{/reg}" style="text-align: center">没有帐号？点击注册</a>
+		</div>
+	</div>
+	<button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+	<p class="mt-5 mb-3 text-muted text-center">&copy; 2035-2077</p>
+</form>
+
+
+
+
+
+	</body>
+
+</html>

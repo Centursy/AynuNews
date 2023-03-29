@@ -123,7 +123,7 @@
 
 		<div style="width: 60%;display: inline-block;padding: 10px;">
 
-			<h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp[[${news.getNews()}]]</h3>
+			<pre><h3>[[${news.getNews()}]]</h3></pre>
 
 			<pre>
 
@@ -151,7 +151,7 @@
 				</div>
 				<div class="card-body">
 					<blockquote class="blockquote mb-0">
-						<p th:text="${logs.getLog()}">A well-known quote, contained in a blockquote element.</p>
+						<pre th:text="${logs.getLog()}">A well-known quote, contained in a blockquote element.</pre>
 						<footer class="blockquote-footer">无名氏&nbsp&nbsp发布于&nbsp&nbsp<cite title="Source Title" th:text="${#dates.format(logs.getTime(),'MM-dd HH:mm' )}">Source Title</cite></footer>
 					</blockquote>
 				</div>

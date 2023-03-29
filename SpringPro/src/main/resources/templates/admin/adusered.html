@@ -2,30 +2,13 @@
 <!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<style>
-	.btn-page {
-		-webkit-border-radius: 2px;
-		-moz-border-radius: 2px;
-		border-radius: 2px;
-		-moz-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2);
-		-webkit-box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2);
-		box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2);
-		padding: 5px 10px;
-	}
-	.btn-active {
-		color: mintcream;/*字体*/
-		background-color: #0d69af;/*背景*/
-		border-color: #0d69af;/*边界*/
-	}
-</style>
-
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="">
 		<meta name="author" content="">
 
-		<title>管理页</title>
+		<title>编辑</title>
 		<!-- Bootstrap core CSS -->
 		<link th:href="@{/asserts/css/bootstrap.min.css}" rel="stylesheet">
 
@@ -56,80 +39,42 @@
 				-webkit-animation: chartjs-render-animation 0.001s;
 				animation: chartjs-render-animation 0.001s;
 			}
-		</style>
 
+			.page-header {
+				padding-bottom: 9px;
+				margin: 40px 0 20px;
+				border-bottom: 1px solid #eeeeee;
+			}
+		</style>
 	</head>
 
 	<body>
 	<!--复用，顶栏-->
 <!--	传参数，高亮-->
-		<div th:insert="~{coomons/coomonsb::title}"></div>
+		<div th:insert="~{coomons/coomons::adtitle}"></div>
 
 		<div class="container-fluid">
 			<div class="row">
 <!--	复用，侧边栏-->
-				<div th:insert="~{coomons/coomonsa::sidebar(active='newsa.html')}"></div>
+				<div th:insert="~{coomons/coomons::adsidebar(active='userlist.html')}"></div>
 
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
-					<div class="table-responsive">
-						<table class="table table-striped table-sm">
-							<thead>
-								<tr>
-									<th>id</th>
-									<th>用户</th>
-									<th>标题</th>
-									<th>分区</th>
-									<th>发帖时间</th>
-									<th>操作</th>
+<!--					添加的表单-->
+					<form th:action="@{/edituser}" method="post">
 
-								</tr>
-							</thead>
-							<tbody>
-							<tr th:each="emp:${news}">
-								<td th:text="${emp.getId()}"></td>
-								<td th:text="${emp.getUser()}"></td>
-								<td th:text="${emp.getTitle()}"></td>
-								<td th:text="${emp.getType()}"></td>
-								<td th:text="${#dates.format(emp.getTime(),'MM-dd HH:mm' )}"></td>
+						<input type="hidden" name="id" th:value="${user.getId()}">
 
-								<td>
-									<a class="btn btn-sm btn-primary" th:href="@{/newsa/}+${emp.getId()}">查看此条目</a>
-									<a class="btn btn-sm btn-danger" th:href="@{/newsadel/}+${emp.getId()}">删除</a>
-								</td>
-							</tr>
-							</tbody>
+						<div class="page-header">
+							<h1 >[[${user.getId()}]]</h1><small>，请在下方输入修改后的密码</small>
+						</div>
+						<div class="form-group">
+							<label>Password</label>
+							<input th:value="${user.getPassword()}" type="text" name="password" class="form-control" placeholder="请输入新密码">
+						</div>
 
-						</table>
-					</div>
-
-					<!--					分页-->
-
-					<div class="row">
-						<div class="col-md-6">
-							当前第[[${pageInfo.pageNum}]]页，共[[${pageInfo.pages}]]页，共[[${pageInfo.total}]]条记录 </div>
-					</div>
-					<!-- 分页导航条 -->
-					<div class="pagenation">
-						<a th:href="@{/newsa/}"><span class="btn-page btn-default">首页</span></a>
-						<a th:href="@{/newsa/(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}"><span
-								class="btn-page btn-default">上一页</span></a>
-						<!-- 遍历导航页 -->
-						<a th:each="page,pageStat:${pageInfo.navigatepageNums}"
-						   th:href="@{/newsa/(pageNum=${page})}">
-                                        <span th:if="${page}==${pageInfo.pageNum}">
-                                            <span class="btn-page btn-active" th:text="${page}"></span>
-                                        </span>
-							<span th:if="${page}!=${pageInfo.pageNum}">
-                                            <span class="btn-page btn-default" th:text="${page}"></span>
-                                        </span>
-						</a>
-						<!-- 导航页 -->
-
-						<a th:href="@{/newsa/(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}"><span
-								class="btn-page btn-default">下一页</span></a>
-						<a th:href="@{/newsa/(pageNum=${pageInfo.pages})}"><span class="btn-page btn-default">尾页</span></a>
-					</div>
+						<button type="submit" class="btn btn-primary">提交修改</button>
+					</form>
 
 
 				</main>
@@ -179,7 +124,6 @@
 					}
 				}
 			});
-
 		</script>
 	<script>
 		fetch('https://v1.hitokoto.cn')

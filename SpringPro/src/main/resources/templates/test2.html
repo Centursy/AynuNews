@@ -10,6 +10,8 @@
 		box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.2);
 		padding: 5px 10px;
 	}
+
+
 	.btn-active {
 		color: mintcream;/*字体*/
 		background-color: #0d69af;/*背景*/
@@ -48,6 +50,23 @@
 		font-size: 50px;
 	}
 
+
+	 .bd-placeholder-img {
+		 font-size: 1.125rem;
+		 text-anchor: middle;
+		 -webkit-user-select: none;
+		 -moz-user-select: none;
+		 -ms-user-select: none;
+		 user-select: none;
+	 }
+
+	@media (min-width: 768px) {
+		.bd-placeholder-img-lg {
+			font-size: 3.5rem;
+		}
+	}
+
+
 </style>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
@@ -63,6 +82,9 @@
 
 		<!-- Custom styles for this template -->
 		<link th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link th:href="@{/asserts/css/floating-labels.css}" rel="stylesheet">
 
 		<style type="text/css">
 			/* Chart.js */
@@ -383,6 +405,81 @@
 					</button>
 				</div>
 			</div>
+
+		</div>
+
+		<form class="form-signin">
+			<div class="text-center mb-4">
+				<img class="mb-4" src="../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+				<h1 class="h3 mb-3 font-weight-normal">Floating labels</h1>
+				<p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element. <a href="https://caniuse.com/css-placeholder-shown">Works in latest Chrome, Safari, Firefox, and IE 10/11 (prefixed).</a></p>
+			</div>
+
+			<div class="form-label-group">
+				<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+				<label for="inputEmail">Email address</label>
+			</div>
+
+			<div class="form-label-group">
+				<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+				<label for="inputPassword">Password</label>
+			</div>
+
+			<div class="checkbox mb-3">
+				<label>
+					<input type="checkbox" value="remember-me"> Remember me
+				</label>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+			<p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2022</p>
+		</form>
+
+		<div class="col-md-8 blog-main">
+			<h3 class="pb-4 mb-4 font-italic border-bottom">
+				From the Firehose
+			</h3>
+
+			<div class="blog-post">
+				<h2 class="blog-post-title">Sample blog post</h2>
+				<p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+
+				<p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
+				<hr>
+				<p>Yeah, she dances to her own beat. Oh, no. You could've been the greatest. 'Cause, baby, <a href="#">you're a firework</a>. Maybe a reason why all the doors are closed. Open up your heart and just let it begin. So très chic, yeah, she's a classic.</p>
+				<blockquote>
+					<p>Bikinis, zucchinis, Martinis, no weenies. I know there will be sacrifice but that's the price. <strong>This is how we do it</strong>. I'm not sticking around to watch you go down. You think you're so rock and roll, but you're really just a joke. I know one spark will shock the world, yeah yeah. Can't replace you with a million rings.</p>
+				</blockquote>
+				<p>Trying to connect the dots, don't know what to tell my boss. Before you met me I was alright but things were kinda heavy. You just gotta ignite the light and let it shine. Glitter all over the room <em>pink flamingos</em> in the pool. </p>
+				<h2>Heading</h2>
+				<p>Suiting up for my crowning battle. If you only knew what the future holds. Bring the beat back. Peach-pink lips, yeah, everybody stares.</p>
+				<h3>Sub-heading</h3>
+				<p>You give a hundred reasons why, and you say you're really gonna try. Straight stuntin' yeah we do it like that. Calling out my name. ‘Cause I, I’m capable of anything.</p>
+				<pre><code>Example code block</code></pre>
+				<p>Before you met me I was alright but things were kinda heavy. You just gotta ignite the light and let it shine.</p>
+				<h3>Sub-heading</h3>
+				<p>You got the finest architecture. Passport stamps, she's cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your heart out.</p>
+				<ul>
+					<li>Got a motel and built a fort out of sheets.</li>
+					<li>Your kiss is cosmic, every move is magic.</li>
+					<li>Suiting up for my crowning battle.</li>
+				</ul>
+				<p>Takes you miles high, so high, 'cause she’s got that one international smile.</p>
+				<ol>
+					<li>Scared to rock the boat and make a mess.</li>
+					<li>I could have rewrite your addiction.</li>
+					<li>I know you get me so I let my walls come down.</li>
+				</ol>
+				<p>After a hurricane comes a rainbow.</p>
+			</div><!-- /.blog-post -->
+
+
+
+
+
+			<nav class="blog-pagination">
+				<a class="btn btn-outline-primary" href="#">Older</a>
+				<a class="btn btn-outline-secondary disabled">Newer</a>
+			</nav>
 
 		</div>
 

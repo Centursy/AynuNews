@@ -37,27 +37,10 @@
 		margin: 40px 0 20px;
 		border-bottom: 1px solid #eeeeee;
 	}
-	.input-group-addon {
-		padding: 6px 12px;
-		font-size: 14px;
-		font-weight: 400;
-		line-height: 1;
-		color: #555555;
-		text-align: center;
-		background-color: #eeeeee;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		display: table-cell;
-
-		vertical-align: middle;
+	pre {
+		white-space: pre-wrap;
+		word-wrap: break-word;
 	}
-
-	.navbar-text {
-		margin-top: 15px;
-		margin-bottom: 15px;
-	}
-
-
 </style>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
@@ -67,7 +50,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 
-		<title>[[${news.getTitle()}]]</title>
+		<title>成功！</title>
 		<!-- Bootstrap core CSS -->
 		<link th:href="@{/asserts/css/bootstrap.min.css}" rel="stylesheet">
 
@@ -103,134 +86,43 @@
 
 	<body>
 	<!--复用，顶栏-->
-<!--	传参数，高亮-->
-		<div th:insert="~{coomons/coomons::title}"></div>
+	<!--	传参数，高亮-->
+	<div th:insert="~{coomons/coomons::adtitle}"></div>
 
 		<div class="container-fluid">
 			<div class="row">
-<!--	复用，侧边栏-->
-				<div th:insert="~{coomons/coomons::sidebar}"></div>
+
+				<!--	复用，侧边栏-->
+				<div th:insert="~{coomons/coomons::adsidebar(active='233.html')}"></div>
+
 			</div>
 		</div>
 	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
+		<div class="container">
+
+			<div class="col-md-8 blog-main">
+				<h3 class="pb-4 mb-4 font-italic border-bottom" th:text="${news.getType()}">
+					From the Firehose
+				</h3>
+
+				<div class="blog-post">
+					<h2 class="blog-post-title" th:text="${news.getTitle()}">Sample blog post</h2>
+					<p class="blog-post-meta">本文作者：[[${news.getWriter()}]]<a href="#">Mark</a></p>
+					<p class="blog-post-meta" th:text="${#dates.format(news.getTime(),'发布于——MM月dd日 HH:mm' )}">January 1, 2014 by</p>
+
+					<pre><h3>[[${news.getWord()}]]</h3></pre>
+
+				</div><!-- /.blog-post -->
 
 
-		<div class="page-header">
-			<h1>[[${news.getTitle()}]]</h1><small>发贴人：[[${news.getUser()}]]</small>
+
+
+
+
+
+			</div>
 		</div>
-
-
-		<div style="width: 60%;display: inline-block;padding: 10px;">
-
-			<pre><h3>[[${news.getNews()}]]</h3></pre>
-
-			<pre>
-
-
-
-
-
-
-
-
-
-
-
-
-			</pre>
-			<div class="page-header">
-				<h5><span class="badge badge-secondary">评论</span></h5>
-			</div>
-
-
-			<div th:each="logs:${logs}">
-			<div class="card" >
-				<div class="card-header">
-					[[${logs.getTitle()}]]
-				</div>
-				<div class="card-body">
-					<blockquote class="blockquote mb-0">
-<!--						<p>&nbsp&nbsp&nbsp&nbsp[[${logs.getLog()}]]</p>-->
-						<pre th:text="${logs.getLog()}"></pre>
-						<footer class="blockquote-footer">[[${logs.getLoguser()}]]&nbsp&nbsp发布于&nbsp&nbsp<cite title="Source Title" th:text="${#dates.format(logs.getTime(),'MM-dd HH:mm' )}">Source Title</cite></footer>
-					</blockquote>
-				</div>
-
-			</div>
-				<pre>
-
-				</pre>
-
-			</div>
-
-
-		</div>
-
-
-
-
-
-		<div style="width: 30%;display: inline-block;float: right;padding: 10px;border-radius: 4px;">
-
-
-
-			<!--			<form role="form" style="width: 70%" th:action="@{/newssubmit}">-->
-			<!--				<div class="form-group">-->
-
-			<!--					<label >标签</label>-->
-			<!--					<input type="text" class="form-control" placeholder="文本输入">-->
-			<!--				</div>-->
-			<!--				<div class="form-group">-->
-			<!--					<label >正文</label>-->
-			<!--					<textarea class="form-control" rows="3"></textarea>-->
-			<!--				</div>-->
-			<!--				<p style="color: red" th:text="写个字再交"></p>-->
-			<!--				<button class="btn btn-info" type="submit">提交</button>-->
-
-			<!--			</form>-->
-
-
-
-			<div class="card">
-				<div class="card-header">
-					在此跟帖！
-				</div>
-				<div class="card-body" >
-					<form role="form" th:action="@{/newslog}">
-						<input type="hidden" name="lzid" th:value="${news.getId()}">
-						<input type="hidden" name="loguser" th:value="${session.loginUser}">
-						<div class="form-group">
-
-							<label >标签</label>
-							<input type="text" class="form-control" placeholder="写标题，不写将无法提交哦" name="title">
-						</div>
-						<div class="form-group">
-							<label >正文</label>
-							<textarea class="form-control" rows="3" placeholder="在此输入正文" name="log"></textarea>
-						</div>
-
-
-
-
-						<button class="btn btn-info" type="submit">提交</button>
-
-
-					</form>
-				</div>
-			</div>
-
-
-
-
-
-		</div>
-
-<!--		以下是测试的-->
-
-
-
-
 
 
 

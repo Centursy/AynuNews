@@ -29,6 +29,8 @@ public class NewsController {
     private LogMapper logMapper;
 
 
+
+
     //跳转到板块
     @RequestMapping("/zonghe")
     public String zonghe(Model model
@@ -278,6 +280,24 @@ public class NewsController {
 
         logMapper.deleteByMap(objectObjectHashMap);
         return "redirect:/newsa";
+    }
+
+    @RequestMapping("/quarynew")
+    public String qula(String name,Model model, @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum, @RequestParam(defaultValue = "10", value = "pageSize") Integer pageSize){
+
+
+        QueryWrapper<News> objectQueryWrapper = new QueryWrapper<>();
+        objectQueryWrapper.like("title",name);
+
+        PageHelper.startPage(pageNum, pageSize);
+        List<News> news = newsMapper.selectList(objectQueryWrapper);
+        PageInfo<News> pageInfo = new PageInfo<>(news);
+
+        model.addAttribute("news",news);
+        model.addAttribute("name",name);
+        model.addAttribute("pageInfo", pageInfo);
+
+        return "user/newsb";
     }
 
 }
