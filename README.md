@@ -17,7 +17,7 @@
 ## 具体效果如下
 登录页面
 ![001](https://user-images.githubusercontent.com/98018410/226301370-e6dddc91-013c-4edf-815e-18f1d16efa0d.png)
-进入的首页
+进入的首页（ps：登录界面也重做了下）
 ![002](https://user-images.githubusercontent.com/98018410/226302585-1977c581-b189-4626-afd5-5f24c8141450.png)
 和具体的页面，内有评论功能
 ![003](https://user-images.githubusercontent.com/98018410/226303482-3cdeba86-75ce-46f5-b9b6-f8e5686be584.png)
